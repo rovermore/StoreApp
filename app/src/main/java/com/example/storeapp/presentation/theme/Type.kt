@@ -1,4 +1,4 @@
-package com.example.storeapp.ui.theme
+package com.example.storeapp.presentation.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
