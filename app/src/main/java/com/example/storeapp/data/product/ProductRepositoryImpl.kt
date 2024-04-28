@@ -1,6 +1,7 @@
 package com.example.storeapp.data.product
 
 import com.example.storeapp.data.base.APIErrorMapper
+import com.example.storeapp.data.cart.local.ProductLocalDatasource
 import com.example.storeapp.data.product.model.ProductResponseMapper
 import com.example.storeapp.data.product.network.ProductNetworkDatasource
 import com.example.storeapp.domain.base.Error
@@ -16,7 +17,7 @@ import javax.inject.Inject
 class ProductRepositoryImpl @Inject constructor(
     private val productNetworkDatasource: ProductNetworkDatasource,
     private val apiErrorMapper: APIErrorMapper,
-    private val productResponseMapper: ProductResponseMapper
+    private val productResponseMapper: ProductResponseMapper,
 ): ProductRepository {
 
     override fun getProductCatalog(): Result<List<ProductDTO>, Error> {

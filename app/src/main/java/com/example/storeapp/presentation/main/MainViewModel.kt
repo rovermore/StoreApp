@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.storeapp.domain.base.map
 import com.example.storeapp.domain.base.mapFailure
+import com.example.storeapp.domain.cart.usecase.CartUseCase
 import com.example.storeapp.domain.product.usecase.ProductUseCase
 import com.example.storeapp.presentation.base.ErrorUI
 import com.example.storeapp.presentation.base.ErrorUIMapper
@@ -19,7 +20,8 @@ import kotlinx.coroutines.launch
 class MainViewModel(
     private val productUseCase: ProductUseCase,
     private val errorUIMapper: ErrorUIMapper,
-    private val productUIModelMapper: ProductUIModelMapper
+    private val productUIModelMapper: ProductUIModelMapper,
+    private val cartUseCase: CartUseCase
 ): ViewModel() {
 
     private val _productsCatalog = MutableStateFlow<List<ProductUIModel>>(emptyList())

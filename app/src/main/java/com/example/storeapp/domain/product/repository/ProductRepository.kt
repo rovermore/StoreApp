@@ -7,4 +7,5 @@ import com.example.storeapp.domain.product.model.ProductDTO
 interface ProductRepository {
 
     fun getProductCatalog(): Result<List<ProductDTO>, Error>
+
 }
