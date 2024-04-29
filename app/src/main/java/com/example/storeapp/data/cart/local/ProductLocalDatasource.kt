@@ -3,7 +3,7 @@ package com.example.storeapp.data.cart.local
 import com.example.storeapp.domain.base.Error
 import com.example.storeapp.domain.base.Result
 import com.example.storeapp.domain.base.map
-import com.example.storeapp.domain.cart.model.CartDTO
+import com.example.storeapp.domain.cart.model.ProductSelectionDTO
 import com.example.storeapp.parseJSON
 import com.google.gson.GsonBuilder
 import javax.inject.Inject
@@ -16,19 +16,19 @@ class ProductLocalDatasource @Inject constructor(
         const val CART_KEY = "CART_KEY"
     }
 
-    fun saveCart(cart: CartDTO): Result<Boolean, Error> {
-        val cartObject = GsonBuilder().create().toJson(cart, CartDTO::class.java)
+    fun saveProducts(cart: ProductSelectionDTO): Result<Boolean, Error> {
+        val cartObject = GsonBuilder().create().toJson(cart, ProductSelectionDTO::class.java)
         return productDataSource.save<String>(CART_KEY, cartObject)
     }
 
-    fun retrieveCart(): Result<CartDTO, Error> {
+    fun retrieveProducts(): Result<ProductSelectionDTO, Error> {
         return productDataSource.read<String>(CART_KEY)
             .map {
-                return it.parseJSON<CartDTO>()
+                return it.parseJSON<ProductSelectionDTO>()
             }
     }
 
-    fun deleteCart(): Result<Boolean, Error> {
+    fun deleteProducts(): Result<Boolean, Error> {
         return productDataSource.delete<String>(CART_KEY)
     }
 

@@ -2,13 +2,13 @@ package com.example.storeapp.domain.cart.repository
 
 import com.example.storeapp.domain.base.Error
 import com.example.storeapp.domain.base.Result
-import com.example.storeapp.domain.cart.model.CartDTO
+import com.example.storeapp.domain.cart.model.ProductSelectionDTO
 
 interface CartRepository {
 
-    fun saveCart(cart: CartDTO): Result<Boolean, Error>
+    fun saveProducts(cart: ProductSelectionDTO): Result<Boolean, Error>
 
-    fun getCart(): Result<CartDTO, Error>
+    fun getProducts(): Result<ProductSelectionDTO, Error>
 
-    fun clearCart(): Result<Boolean, Error>
+    fun clearProducts(): Result<Boolean, Error>
 }
