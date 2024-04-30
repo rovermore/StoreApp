@@ -1,11 +1,11 @@
-package com.example.storeapp.domain
+package com.example.storeapp.tests.domain
 
 import com.example.storeapp.domain.base.Error
 import com.example.storeapp.domain.base.Failure
 import com.example.storeapp.domain.base.Success
-import com.example.storeapp.domain.mocks.ProductDTOMock
 import com.example.storeapp.domain.product.repository.ProductRepository
 import com.example.storeapp.domain.product.usecase.ProductUseCase
+import com.example.storeapp.mocks.ProductDTOMock
 import junit.framework.Assert
 import org.junit.Before
 import org.junit.Test

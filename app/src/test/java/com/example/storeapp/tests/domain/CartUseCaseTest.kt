@@ -1,4 +1,4 @@
-package com.example.storeapp.domain
+package com.example.storeapp.tests.domain
 
 import com.example.storeapp.domain.base.Error
 import com.example.storeapp.domain.base.Failure
@@ -8,8 +8,8 @@ import com.example.storeapp.domain.cart.model.CartDTO
 import com.example.storeapp.domain.cart.model.ProductSelectionDTO
 import com.example.storeapp.domain.cart.repository.CartRepository
 import com.example.storeapp.domain.cart.usecase.CartUseCase
-import com.example.storeapp.domain.mocks.CartDTOMock
-import com.example.storeapp.domain.mocks.ProductDTOMock
+import com.example.storeapp.mocks.CartDTOMock
+import com.example.storeapp.mocks.ProductDTOMock
 import junit.framework.Assert
 import org.junit.Before
 import org.junit.Test

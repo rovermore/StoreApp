@@ -1,4 +1,4 @@
-package com.example.storeapp.domain.mocks
+package com.example.storeapp.mocks
 
 import com.example.storeapp.domain.product.model.ProductDTO
 
