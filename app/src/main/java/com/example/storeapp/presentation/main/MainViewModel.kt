@@ -87,7 +87,6 @@ class MainViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             cartUseCase.getCart()
                 .map {
-                    delay(2000)
                     _cart.value = cartUIModelMapper.map(it)
                 }.then {
                     _isCartLoading.value = false
