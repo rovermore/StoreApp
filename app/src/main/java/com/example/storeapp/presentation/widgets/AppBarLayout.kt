@@ -18,7 +18,7 @@ import com.example.storeapp.presentation.theme.Purple40
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AppBar(
+fun StoreAppBar(
     onCartClicked: () -> Unit
 ) {
     TopAppBar(
@@ -48,7 +48,7 @@ fun AppBar(
 @Preview(widthDp = 340, showBackground = true, backgroundColor = 0xFFFFFF)
 @Composable
 private fun AppBarPreview() {
-    AppBar(
+    StoreAppBar(
         onCartClicked =  {}
     )
 }

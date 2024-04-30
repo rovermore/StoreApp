@@ -4,7 +4,9 @@ import com.example.storeapp.domain.cart.model.CartDTO
 import com.example.storeapp.domain.cart.model.CartItemDTO
 import javax.inject.Inject
 
-class CartUIModelMapper @Inject constructor() {
+class CartUIModelMapper @Inject constructor(
+    private val productUIModelMapper: ProductUIModelMapper
+) {
 
     fun map(cartDTO: CartDTO): CartUIModel {
         return CartUIModel(
@@ -20,8 +22,7 @@ class CartUIModelMapper @Inject constructor() {
         itemsDTO.map {
             list.add(
                 CartItemUIModel(
-                    code = it.code,
-                    name = it.name,
+                    productUIModel = productUIModelMapper.map(it.productDTO),
                     totalAmount = it.totalAmount.toBigDecimal().stripTrailingZeros().toPlainString(),
                     totalItem = it.totalItem.toString()
                 )

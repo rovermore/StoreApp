@@ -23,9 +23,9 @@ import com.example.storeapp.presentation.main.MainViewModel
 import com.example.storeapp.presentation.main.model.CartItemUIModel
 import com.example.storeapp.presentation.main.model.CartUIModel
 import com.example.storeapp.presentation.main.model.ProductUIModel
-import com.example.storeapp.presentation.widgets.AppBar
 import com.example.storeapp.presentation.widgets.ErrorView
 import com.example.storeapp.presentation.widgets.Loader
+import com.example.storeapp.presentation.widgets.StoreAppBar
 import kotlinx.coroutines.launch
 
 
@@ -37,17 +37,19 @@ fun MainActivityLayout(
     val productsCatalog by viewModel.productsCatalog.collectAsStateWithLifecycle()
     val cart by viewModel.cart.collectAsStateWithLifecycle()
     val isLoading by viewModel.isLoading.collectAsStateWithLifecycle()
+    val isCartLoading by viewModel.isCartLoading.collectAsStateWithLifecycle()
     val error by viewModel.error.collectAsStateWithLifecycle()
 
     Content(
         productsCatalog = productsCatalog,
         cart = cart,
         isLoading = isLoading,
+        isCartLoading = isCartLoading,
         error = error,
         onCartClicked = { viewModel.getCart() },
         onAddProduct = { viewModel.addProduct(it) },
-        addCartItem = {},
-        removeCartItem = {}
+        onRemoceProduct = { viewModel.deleteProduct(it) },
+        onBuyClicked = { viewModel.clearCart() }
     )
 
 }
@@ -58,11 +60,12 @@ fun Content(
     productsCatalog: List<ProductUIModel>,
     cart: CartUIModel,
     isLoading: Boolean,
+    isCartLoading: Boolean,
     error: ErrorUI,
     onCartClicked: () -> Unit,
     onAddProduct: (ProductUIModel) -> Unit,
-    addCartItem: (String) -> Unit,
-    removeCartItem: (String) -> Unit,
+    onRemoceProduct: (ProductUIModel) -> Unit,
+    onBuyClicked: () -> Unit,
 ) {
 
     val coroutineScope = rememberCoroutineScope()
@@ -74,7 +77,7 @@ fun Content(
 
     Column {
 
-        AppBar(
+        StoreAppBar(
             onCartClicked = {
                 coroutineScope.launch {
                     onCartClicked()
@@ -89,10 +92,17 @@ fun Content(
             sheetContent = {
 
                 Cart(
+                    isCartLoading = isCartLoading,
                     cart = cart,
-                    onAddClicked = { addCartItem(it) },
-                    onRemoveClicked = { removeCartItem(it) }
-                    )
+                    onAddClicked = { onAddProduct(it) },
+                    onRemoveClicked = { onRemoceProduct(it) },
+                    onBuyClicked = {
+                        coroutineScope.launch {
+                            sheetState.hide()
+                            onBuyClicked()
+                        }
+                    }
+                )
             }
         ) {
             LazyColumn(
@@ -128,23 +138,24 @@ private fun MainActivityPreview() {
     Content(
         productsCatalog = listOf(
             ProductUIModel("VOUCHER", "Cabify Voucher", "5"),
-            ProductUIModel("TSHIRT", "Cabify T-Shirt", "20"),
+            ProductUIModel("VOUCHER", "Cabify Voucher", "5"),
             ProductUIModel("MUG", "Cabify Cofee Mug", "7.5"),
         ),
         cart = CartUIModel(
             items = listOf(
-                CartItemUIModel("VOUCHER", "Cabify Voucher", "25", "5"),
-                CartItemUIModel("VOUCHER", "Cabify Voucher", "25", "5"),
+                CartItemUIModel(ProductUIModel("VOUCHER", "Cabify Voucher", "5"), "25", "5"),
+                CartItemUIModel(ProductUIModel("VOUCHER", "Cabify Voucher", "5"), "25", "5"),
             ),
             discount = "30",
             totalAmount = "200",
         ),
         isLoading = false,
+        isCartLoading = false,
         error = ErrorUI.None,
         onCartClicked = { },
         onAddProduct = {},
-        addCartItem = {},
-        removeCartItem = {}
+        onRemoceProduct = {},
+        onBuyClicked = {}
     )
 }
 
@@ -155,18 +166,19 @@ private fun MainActivityWithLoaderPreview() {
         productsCatalog = listOf(),
         cart = CartUIModel(
             items = listOf(
-                CartItemUIModel("VOUCHER", "Cabify Voucher", "25", "5"),
-                CartItemUIModel("VOUCHER", "Cabify Voucher", "25", "5"),
+                CartItemUIModel(ProductUIModel("MUG", "Cabify Cofee Mug", "7.5"), "25", "5"),
+                CartItemUIModel(ProductUIModel("MUG", "Cabify Cofee Mug", "7.5"), "25", "5"),
             ),
             discount = "30",
             totalAmount = "200",
         ),
         isLoading = true,
+        isCartLoading = false,
         error = ErrorUI.None,
         onCartClicked = { },
         onAddProduct = {},
-        addCartItem = {},
-        removeCartItem = {}
+        onRemoceProduct = {},
+        onBuyClicked = {}
     )
 }
 
@@ -181,17 +193,18 @@ private fun MainActivityWithErrorPreview() {
         ),
         cart = CartUIModel(
             items = listOf(
-                CartItemUIModel("VOUCHER", "Cabify Voucher", "25", "5"),
-                CartItemUIModel("VOUCHER", "Cabify Voucher", "25", "5"),
+                CartItemUIModel(ProductUIModel("TSHIRT", "Cabify T-Shirt", "20"), "25", "5"),
+                CartItemUIModel(ProductUIModel("MUG", "Cabify Cofee Mug", "7.5"), "25", "5"),
             ),
             discount = "30",
             totalAmount = "200",
         ),
         isLoading = false,
+        isCartLoading = false,
         error = ErrorUI.GenericError(""),
         onCartClicked = { },
         onAddProduct = {},
-        addCartItem = {},
-        removeCartItem = {}
+        onRemoceProduct = {},
+        onBuyClicked = {}
     )
 }

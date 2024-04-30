@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Divider
@@ -27,20 +28,26 @@ import androidx.compose.ui.unit.sp
 import com.example.storeapp.R
 import com.example.storeapp.presentation.main.model.CartItemUIModel
 import com.example.storeapp.presentation.main.model.CartUIModel
+import com.example.storeapp.presentation.main.model.ProductUIModel
+import com.example.storeapp.presentation.widgets.Loader
 
 @Composable
 fun Cart(
+    isCartLoading: Boolean,
     cart: CartUIModel,
-    onAddClicked: (String) -> Unit,
-    onRemoveClicked: (String) -> Unit
+    onAddClicked: (ProductUIModel) -> Unit,
+    onRemoveClicked: (ProductUIModel) -> Unit,
+    onBuyClicked: () -> Unit
 ) {
 
-    LazyColumn {
+    LazyColumn(horizontalAlignment = Alignment.CenterHorizontally) {
 
         item {
-            Column(modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 8.dp)) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp)
+            ) {
                 Divider(
                     modifier = Modifier
                         .padding(vertical = 8.dp)
@@ -52,30 +59,43 @@ fun Cart(
             }
         }
 
-        items(cart.items) {
-            CartItem(
-                item = it,
-                onAddClicked = {onAddClicked(it)},
-                onRemoveClicked = {onRemoveClicked(it)}
+        if (isCartLoading) {
+            item { Loader() }
+        } else {
+
+            items(cart.items) {
+                CartItem(
+                    item = it,
+                    onAddClicked = { onAddClicked(it) },
+                    onRemoveClicked = { onRemoveClicked(it) }
                 )
-        }
-        item {
-            SummaryCard(
-                keyText = stringResource(id = R.string.total_before_disocunt),
-                valueText = cart.totalBeforeDiscount.plus(" €")
-            )
-        }
-        item {
-            SummaryCard(
-                keyText = stringResource(id = R.string.discount),
-                valueText = cart.discount.plus(" €")
-            )
-        }
-        item {
-            SummaryCard(
-                keyText = stringResource(id = R.string.total),
-                valueText = cart.totalAmount.plus(" €")
-            )
+            }
+            item {
+                SummaryCard(
+                    keyText = stringResource(id = R.string.total_before_disocunt),
+                    valueText = cart.totalBeforeDiscount.plus(" €")
+                )
+            }
+            item {
+                SummaryCard(
+                    keyText = stringResource(id = R.string.discount),
+                    valueText = cart.discount.plus(" €")
+                )
+            }
+            item {
+                SummaryCard(
+                    keyText = stringResource(id = R.string.total),
+                    valueText = cart.totalAmount.plus(" €")
+                )
+            }
+
+            item {
+                Button(
+                    onClick = { onBuyClicked() }
+                ) {
+                    Text(text = stringResource(id = R.string.buy))
+                }
+            }
         }
     }
 }
@@ -113,16 +133,18 @@ fun SummaryCard(keyText: String, valueText: String){
 @Composable
 private fun CartPreview() {
     Cart(
+        isCartLoading = false,
         cart = CartUIModel(
             items = listOf(
-                CartItemUIModel("VOUCHER", "Cabify Voucher", "25", "5"),
-                CartItemUIModel("VOUCHER", "Cabify Voucher", "25", "5"),
+                CartItemUIModel(ProductUIModel("MUG", "Cabify Cofee Mug", "7.5"),  "25", "5"),
+                CartItemUIModel(ProductUIModel("MUG", "Cabify Cofee Mug", "7.5"),  "25", "5"),
             ),
             totalBeforeDiscount = "230",
             discount = "30",
             totalAmount = "200",
         ),
         onAddClicked = {},
-        onRemoveClicked = {}
+        onRemoveClicked = {},
+        onBuyClicked = {}
     )
 }

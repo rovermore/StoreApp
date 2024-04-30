@@ -1,5 +1,7 @@
 package com.example.storeapp.domain.cart.model
 
+import com.example.storeapp.domain.product.model.ProductDTO
+
 class CartDTO(
     val items: List<CartItemDTO>,
     val totalBeforeDiscount: Double,
@@ -8,8 +10,7 @@ class CartDTO(
 )
 
 data class CartItemDTO(
-    val code: String,
-    val name: String,
+    val productDTO: ProductDTO,
     val totalAmount: Double,
     val totalItem: Int,
 )

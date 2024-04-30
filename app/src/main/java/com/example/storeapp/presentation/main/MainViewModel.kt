@@ -43,6 +43,9 @@ class MainViewModel @Inject constructor(
     private val _isLoading = MutableStateFlow(true)
     val isLoading: StateFlow<Boolean> get() = _isLoading
 
+    private val _isCartLoading = MutableStateFlow(true)
+    val isCartLoading: StateFlow<Boolean> get() = _isCartLoading
+
     init {
         getProductCatalog()
     }
@@ -84,6 +87,17 @@ class MainViewModel @Inject constructor(
             cartUseCase.getCart()
                 .map {
                     _cart.value = cartUIModelMapper.map(it)
+                }.then {
+                    _isCartLoading.value = false
+                }
+        }
+    }
+
+    fun clearCart() {
+        viewModelScope.launch(Dispatchers.IO) {
+            cartUseCase.clearCart()
+                .map {
+                    getCart()
                 }
         }
     }

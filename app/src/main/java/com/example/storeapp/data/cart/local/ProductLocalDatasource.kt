@@ -29,7 +29,8 @@ class ProductLocalDatasource @Inject constructor(
     }
 
     fun deleteProducts(): Result<Boolean, Error> {
-        return productDataSource.delete<String>(CART_KEY)
+        val cartObject = GsonBuilder().create().toJson(ProductSelectionDTO(), ProductSelectionDTO::class.java)
+        return productDataSource.save<String>(CART_KEY, cartObject)
     }
 
 }

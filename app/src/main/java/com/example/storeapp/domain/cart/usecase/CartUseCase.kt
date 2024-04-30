@@ -49,8 +49,7 @@ class CartUseCase @Inject constructor(
             itemList.forEach { itemType ->
                 itemDTOList.add(
                     CartItemDTO(
-                        code = itemType.key,
-                        name = itemType.value[0].name,
+                        productDTO = itemType.value[0],
                         totalItem = itemType.value.size,
                         totalAmount = itemType.value.sumOf { it.price }
                     )
@@ -70,17 +69,17 @@ class CartUseCase @Inject constructor(
 
     private fun calculateDiscount(itemDTOList: List<CartItemDTO>): Double {
         return if (itemDTOList.isNotEmpty()) {
-            val voucherDiscount: Double = itemDTOList.filter { it.code == "VOUCHER" }.let { list ->
+            val voucherDiscount: Double = itemDTOList.filter { it.productDTO.code == "VOUCHER" }.let { list ->
                 if (list.isNotEmpty() && list[0].totalItem > 1) {
                     with(list[0]) {
                         if (totalItem.mod(2) == 0)
                             totalAmount / 2
                         else
-                            totalAmount / 2 + (totalAmount / totalItem)
+                            (totalAmount - productDTO.price) / 2
                     }
                 } else 0.0
             }
-            val tshirtDiscount: Double = itemDTOList.filter { it.code == "TSHIRT" }.let {list ->
+            val tshirtDiscount: Double = itemDTOList.filter { it.productDTO.code == "TSHIRT" }.let {list ->
                 if (list.isNotEmpty()) {
                     with(list[0]) {
                         if (totalItem >= 3)

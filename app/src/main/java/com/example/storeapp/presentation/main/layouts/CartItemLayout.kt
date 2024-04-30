@@ -15,12 +15,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.storeapp.presentation.main.model.CartItemUIModel
+import com.example.storeapp.presentation.main.model.ProductUIModel
 
 @Composable
 fun CartItem(
     item: CartItemUIModel,
-    onAddClicked: (String) -> Unit,
-    onRemoveClicked: (String) -> Unit
+    onAddClicked: (ProductUIModel) -> Unit,
+    onRemoveClicked: (ProductUIModel) -> Unit
 ) {
     Card(
         modifier = Modifier.fillMaxWidth().padding(4.dp)
@@ -31,20 +32,20 @@ fun CartItem(
         ) {
             Text(
                 modifier = Modifier.weight(1F),
-                text = item.name,
+                text = item.productUIModel.name,
                 fontSize = 14.sp,
                 fontWeight = FontWeight.SemiBold
             )
             Button(
                 modifier = Modifier.weight(1F),
-                onClick = { onRemoveClicked(item.code) },
+                onClick = { onRemoveClicked(item.productUIModel) },
             ) {
                 Text("-")
             }
 
             Button(
                 modifier = Modifier.weight(1F),
-                onClick = { onAddClicked(item.code) },
+                onClick = { onAddClicked(item.productUIModel) },
             ) {
                 Text("+")
             }
@@ -75,7 +76,7 @@ fun CartItem(
 @Composable
 private fun CartItemPreview() {
     CartItem(
-        item = CartItemUIModel(code = "VOUCHER", name = "Cabify Voucher", totalAmount = "5", totalItem = "5"),
+        item = CartItemUIModel(ProductUIModel("MUG", "Cabify Cofee Mug", "7.5"), totalAmount = "5", totalItem = "5"),
         onAddClicked = {},
         onRemoveClicked = {}
     )

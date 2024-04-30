@@ -8,8 +8,7 @@ data class CartUIModel(
 )
 
 data class CartItemUIModel(
-    val code: String = "",
-    val name: String = "",
+    val productUIModel: ProductUIModel,
     val totalAmount: String = "",
     val totalItem: String = "",
 )
