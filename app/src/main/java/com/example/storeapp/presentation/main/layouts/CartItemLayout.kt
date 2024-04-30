@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -16,6 +17,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.storeapp.presentation.main.model.CartItemUIModel
 import com.example.storeapp.presentation.main.model.ProductUIModel
+import com.example.storeapp.presentation.theme.Purple40
+import com.example.storeapp.presentation.theme.Purple80
 
 @Composable
 fun CartItem(
@@ -24,11 +27,15 @@ fun CartItem(
     onRemoveClicked: (ProductUIModel) -> Unit
 ) {
     Card(
-        modifier = Modifier.fillMaxWidth().padding(4.dp)
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(4.dp)
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 8.dp)
         ) {
             Text(
                 modifier = Modifier.weight(1F),
@@ -39,15 +46,17 @@ fun CartItem(
             Button(
                 modifier = Modifier.weight(1F),
                 onClick = { onRemoveClicked(item.productUIModel) },
+                colors = ButtonDefaults.buttonColors(containerColor = Purple80)
             ) {
-                Text("-")
+                Text(text = "-", color = Purple40, fontWeight = FontWeight.Bold)
             }
 
             Button(
                 modifier = Modifier.weight(1F),
                 onClick = { onAddClicked(item.productUIModel) },
+                colors = ButtonDefaults.buttonColors(containerColor = Purple80)
             ) {
-                Text("+")
+                Text(text = "+", color = Purple40, fontWeight = FontWeight.Bold)
             }
 
             Text(

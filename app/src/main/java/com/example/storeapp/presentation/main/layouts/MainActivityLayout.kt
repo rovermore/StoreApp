@@ -48,7 +48,7 @@ fun MainActivityLayout(
         error = error,
         onCartClicked = { viewModel.getCart() },
         onAddProduct = { viewModel.addProduct(it) },
-        onRemoceProduct = { viewModel.deleteProduct(it) },
+        onRemoveProduct = { viewModel.deleteProduct(it) },
         onBuyClicked = { viewModel.clearCart() }
     )
 
@@ -64,7 +64,7 @@ fun Content(
     error: ErrorUI,
     onCartClicked: () -> Unit,
     onAddProduct: (ProductUIModel) -> Unit,
-    onRemoceProduct: (ProductUIModel) -> Unit,
+    onRemoveProduct: (ProductUIModel) -> Unit,
     onBuyClicked: () -> Unit,
 ) {
 
@@ -83,7 +83,8 @@ fun Content(
                     onCartClicked()
                     sheetState.show()
                 }
-            }
+            },
+            cartHasItems = cart.hasItems
         )
 
         ModalBottomSheetLayout(
@@ -95,7 +96,7 @@ fun Content(
                     isCartLoading = isCartLoading,
                     cart = cart,
                     onAddClicked = { onAddProduct(it) },
-                    onRemoveClicked = { onRemoceProduct(it) },
+                    onRemoveClicked = { onRemoveProduct(it) },
                     onBuyClicked = {
                         coroutineScope.launch {
                             sheetState.hide()
@@ -154,7 +155,7 @@ private fun MainActivityPreview() {
         error = ErrorUI.None,
         onCartClicked = { },
         onAddProduct = {},
-        onRemoceProduct = {},
+        onRemoveProduct = {},
         onBuyClicked = {}
     )
 }
@@ -177,7 +178,7 @@ private fun MainActivityWithLoaderPreview() {
         error = ErrorUI.None,
         onCartClicked = { },
         onAddProduct = {},
-        onRemoceProduct = {},
+        onRemoveProduct = {},
         onBuyClicked = {}
     )
 }
@@ -204,7 +205,7 @@ private fun MainActivityWithErrorPreview() {
         error = ErrorUI.GenericError(""),
         onCartClicked = { },
         onAddProduct = {},
-        onRemoceProduct = {},
+        onRemoveProduct = {},
         onBuyClicked = {}
     )
 }

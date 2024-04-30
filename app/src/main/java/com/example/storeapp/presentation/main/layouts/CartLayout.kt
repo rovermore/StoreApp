@@ -91,6 +91,7 @@ fun Cart(
 
             item {
                 Button(
+                    modifier = Modifier.fillMaxWidth().padding(8.dp),
                     onClick = { onBuyClicked() }
                 ) {
                     Text(text = stringResource(id = R.string.buy))

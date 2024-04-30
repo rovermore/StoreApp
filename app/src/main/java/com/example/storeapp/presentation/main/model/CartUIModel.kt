@@ -4,7 +4,8 @@ data class CartUIModel(
     val items: List<CartItemUIModel> = emptyList(),
     val totalBeforeDiscount: String = "",
     val discount: String = "",
-    val totalAmount: String = ""
+    val totalAmount: String = "",
+    val hasItems: Boolean = items.isNotEmpty()
 )
 
 data class CartItemUIModel(

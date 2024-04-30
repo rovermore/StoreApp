@@ -48,6 +48,7 @@ class MainViewModel @Inject constructor(
 
     init {
         getProductCatalog()
+        getCart()
     }
 
     private fun getProductCatalog() {
@@ -86,6 +87,7 @@ class MainViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             cartUseCase.getCart()
                 .map {
+                    delay(2000)
                     _cart.value = cartUIModelMapper.map(it)
                 }.then {
                     _isCartLoading.value = false
