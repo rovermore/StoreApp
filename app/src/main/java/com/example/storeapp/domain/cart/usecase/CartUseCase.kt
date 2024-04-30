@@ -15,6 +15,7 @@ class CartUseCase @Inject constructor(
     private val cartRepository: CartRepository
 ) {
 
+
     private fun getProductSelection(): Result<ProductSelectionDTO, Error> {
         return cartRepository.getProducts()
     }

@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.storeapp.domain.base.map
 import com.example.storeapp.domain.base.mapFailure
+import com.example.storeapp.domain.base.then
 import com.example.storeapp.domain.cart.usecase.CartUseCase
 import com.example.storeapp.domain.product.model.ProductDTO
 import com.example.storeapp.domain.product.usecase.ProductUseCase
@@ -15,6 +16,7 @@ import com.example.storeapp.presentation.main.model.ProductUIModel
 import com.example.storeapp.presentation.main.model.ProductUIModelMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -38,6 +40,9 @@ class MainViewModel @Inject constructor(
     private val _error = MutableStateFlow<ErrorUI>(ErrorUI.None)
     val error: StateFlow<ErrorUI> get() = _error
 
+    private val _isLoading = MutableStateFlow(true)
+    val isLoading: StateFlow<Boolean> get() = _isLoading
+
     init {
         getProductCatalog()
     }
@@ -46,9 +51,12 @@ class MainViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             productUseCase.getProductsCatalog()
                 .map {
+                    delay(2000)
                     _productsCatalog.value = productUIModelMapper.mapList(it)
                 }.mapFailure {
                     _error.value = errorUIMapper.map(it)
+                }.then {
+                    _isLoading.value = false
                 }
         }
     }

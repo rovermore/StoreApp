@@ -1,17 +1,73 @@
 package com.example.storeapp.presentation.main.layouts
 
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
+import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.storeapp.presentation.main.model.CartItemUIModel
 
 @Composable
-fun CartItem(cart: CartItemUIModel) {
-    Row {
-        Text(text = cart.name)
-        Text(text = cart.totalItem)
-        Text(text = cart.totalAmount)
+fun CartItem(
+    item: CartItemUIModel,
+    onAddClicked: (String) -> Unit,
+    onRemoveClicked: (String) -> Unit
+) {
+    Card(
+        modifier = Modifier.fillMaxWidth().padding(4.dp)
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp)
+        ) {
+            Text(
+                modifier = Modifier.weight(1F),
+                text = item.name,
+                fontSize = 14.sp,
+                fontWeight = FontWeight.SemiBold
+            )
+            Button(
+                modifier = Modifier.weight(1F),
+                onClick = { onRemoveClicked(item.code) },
+            ) {
+                Text("-")
+            }
+
+            Button(
+                modifier = Modifier.weight(1F),
+                onClick = { onAddClicked(item.code) },
+            ) {
+                Text("+")
+            }
+
+            Text(
+                modifier = Modifier.weight(1F),
+                textAlign = TextAlign.Center,
+                text = item.totalItem,
+                fontSize = 14.sp,
+                fontWeight = FontWeight.SemiBold
+            )
+
+            Text(
+                modifier = Modifier.weight(1F),
+                textAlign = TextAlign.Center,
+                text = item.totalAmount.plus(" €"),
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Bold
+            )
+
+
+
+        }
     }
 }
 
@@ -19,6 +75,8 @@ fun CartItem(cart: CartItemUIModel) {
 @Composable
 private fun CartItemPreview() {
     CartItem(
-        cart = CartItemUIModel(code = "VOUCHER", name = "Cabify Voucher", totalAmount = "5", totalItem = "5")
+        item = CartItemUIModel(code = "VOUCHER", name = "Cabify Voucher", totalAmount = "5", totalItem = "5"),
+        onAddClicked = {},
+        onRemoveClicked = {}
     )
 }
