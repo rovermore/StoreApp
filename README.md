@@ -1,5 +1,6 @@
 # StoreApp
-
+![Captura de pantalla 2024-05-03 a las 18 17 41](https://github.com/rovermore/StoreApp/assets/33871567/a1257dc3-a8f4-43fa-8583-9101553c2236)
+![Captura de pantalla 2024-05-03 a las 18 17 49](https://github.com/rovermore/StoreApp/assets/33871567/a5a1e6f6-7a06-4620-89f2-da3167198e94)
 ## Summary
 The app shows a small catalog of products fetched from network in a list that will show product name and price. 
 The user can select any of this products and the selection will be saved in a cart. 
