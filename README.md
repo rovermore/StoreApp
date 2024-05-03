@@ -4,7 +4,7 @@
 ## Summary
 The app shows a small catalog of products fetched from network in a list that will show product name and price. 
 The user can select any of this products and the selection will be saved in a cart. 
-A cart is accessible to the user too in order to and modify his selection by increasing and decreasing the amount of products. 
+A cart is accessible to the user too in order to modify his selection by increasing and decreasing the amount of products. 
 Finally the user can complete the purchase and the cart will be cleared.
 
 ## Technical Decisions
