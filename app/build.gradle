@@ -144,9 +144,6 @@ dependencies {
     //Accompanist Compose
     implementation "com.google.accompanist:accompanist-pager:0.22.0-rc"
 
-    //Coil
-    implementation("io.coil-kt:coil-compose:2.4.0")
-
     //Data store
     implementation "androidx.datastore:datastore-preferences:1.0.0"
 
