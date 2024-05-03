@@ -13,7 +13,7 @@ import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 
-class ProductUseCaseTest {
+class ProductDAOUseCaseTest {
 
     @Mock
     lateinit var productRepository: ProductRepository
