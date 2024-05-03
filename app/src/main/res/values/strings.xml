@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">StoreApp</string>
+    <string name="error_string">Error al recuperar los datos</string>
+    <string name="reload">Reload</string>
+    <string name="total_before_disocunt">Total before discount</string>
+    <string name="discount">Discount</string>
+    <string name="total">Total</string>
+    <string name="buy">Buy</string>
+</resources>
