@@ -18,4 +18,10 @@ Technical Decisions
 - Dagger Hilt is used for dependency injection as it is the solution suggested by Google for DI in Android apps.
 - Coroutines are used for asynchronous operations as they are an easy, powerful, and flexible solution.
 - The domain layer is thoroughly tested with unit tests using JUnit and Mockito. It is completely isolated from the Android framework or any external library and also contains the business logic.
+- Added Github Actions small pipeline to run tests and build app
 
+Technical Debt
+---------------
+- Obfuscate application with R8
+- Introduce a linter (KtLint for example)
+- Do UI tests
