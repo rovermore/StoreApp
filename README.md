@@ -1,15 +1,12 @@
 # StoreApp
------------
 
 ## Summary
-------
 The app shows a small catalog of products fetched from network in a list that will show product name and price. 
 The user can select any of this products and the selection will be saved in a cart. 
 A cart is accessible to the user too in order to and modify his selection by increasing and decreasing the amount of products. 
 Finally the user can complete the purchase and the cart will be cleared.
 
 ## Technical Decisions
--------------------
 - The language selected for the development is Kotlin, as Android development is Kotlin first
 - The architecture selected is CLEAN. The app contains three layers, data layer, domain layer and presentation layer. "Vertical slicing" is chosen when organizing the project for two reasons: to easily extract any layer into modules that can be reusable in future projects, and the second reason is the advantages it offers when obfuscating the code, where it would be easier to obfuscate the domain layer compared to another architecture organization. Note: If a design system exists, an additional layer of components could be created that could also be extracted into a module for reuse in other projects or platforms.
 - In regards to the presentation layer, the MVVM pattern is used since I believe it is the pattern currently used in the company, as well as Compose. For observability from the ViewModel, StateFlow was used instead of State or LiveData to try to minimize the dependencies of Android in the ViewModel.
@@ -21,7 +18,6 @@ Finally the user can complete the purchase and the cart will be cleared.
 - Added Github Actions small pipeline to run tests and build app
 
 ## Technical Debt
----------------
 - Obfuscate application with R8
 - Introduce a linter (KtLint for example)
 - Do UI tests
