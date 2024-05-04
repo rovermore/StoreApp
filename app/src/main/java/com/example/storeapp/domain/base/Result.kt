@@ -24,5 +24,5 @@ fun <T> Result<T, T>.get() = when (this) {
     is Failure<T> -> reason
 }
 
-fun <T, E> Result<T, E>.then(f: () -> Unit) =
+inline fun <T, E> Result<T, E>.then(f: () -> Unit) =
     apply { f() }
