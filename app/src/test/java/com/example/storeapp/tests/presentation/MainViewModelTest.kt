@@ -99,4 +99,36 @@ class MainViewModelTest {
 
     }
 
+    @Test
+    fun `when deleteProduct is called cartUseCase deleteProduct is called`() = runTest {
+        Mockito.`when`(productUseCase.getProductsCatalog()).thenReturn(successList)
+        Mockito.`when`(cartUseCase.getCart()).thenReturn(successCart)
+        Mockito.`when`(cartUseCase.deleteProduct(ProductDTO(
+            productListDTO[0].code,
+            productListDTO[0].name,
+            productListDTO[0].price,
+        ))).thenReturn(Success(true))
+        Mockito.`when`(cartUIModelMapper.map(cartDTO)).thenReturn(cartUIModel)
+        viewModel = MainViewModel(
+            productUseCase, errorUIMapper, productUIModelMapper, cartUseCase, cartUIModelMapper
+        )
+        viewModel.deleteProduct(productUIModelList[0])
+        Mockito.verify(cartUseCase).getCart()
+
+    }
+
+    @Test
+    fun `when clearCart is called cartUseCase clearCart is called`() = runTest {
+        Mockito.`when`(productUseCase.getProductsCatalog()).thenReturn(successList)
+        Mockito.`when`(cartUseCase.getCart()).thenReturn(successCart)
+        Mockito.`when`(cartUseCase.clearCart()).thenReturn(Success(true))
+        Mockito.`when`(cartUIModelMapper.map(cartDTO)).thenReturn(cartUIModel)
+        viewModel = MainViewModel(
+            productUseCase, errorUIMapper, productUIModelMapper, cartUseCase, cartUIModelMapper
+        )
+        viewModel.clearCart()
+        Mockito.verify(cartUseCase).getCart()
+
+    }
+
 }
