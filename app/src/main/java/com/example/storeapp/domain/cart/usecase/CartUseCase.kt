@@ -12,7 +12,8 @@ import com.example.storeapp.domain.product.model.ProductDTO
 import javax.inject.Inject
 
 class CartUseCase @Inject constructor(
-    private val cartRepository: CartRepository
+    private val cartRepository: CartRepository,
+    private val discountCalculator: DiscountCalculator
 ) {
 
 
@@ -55,7 +56,7 @@ class CartUseCase @Inject constructor(
                     )
                 )
             }
-            val discount = calculateDiscount(itemDTOList)
+            val discount = discountCalculator.calculateDiscount(itemDTOList)
             val totalBeforeDiscount = itemDTOList.sumOf { it.totalAmount }
 
             CartDTO(
@@ -65,34 +66,6 @@ class CartUseCase @Inject constructor(
                 totalAmount = totalBeforeDiscount - discount
             )
         }
-    }
-
-    private fun calculateDiscount(itemDTOList: List<CartItemDTO>): Double {
-        return if (itemDTOList.isNotEmpty()) {
-            val voucherDiscount: Double = itemDTOList.filter { it.productDTO.code == "VOUCHER" }.let { list ->
-                if (list.isNotEmpty() && list[0].totalItem > 1) {
-                    with(list[0]) {
-                        if (totalItem.mod(2) == 0)
-                            totalAmount / 2
-                        else
-                            (totalAmount - productDTO.price) / 2
-                    }
-                } else 0.0
-            }
-            val tshirtDiscount: Double = itemDTOList.filter { it.productDTO.code == "TSHIRT" }.let {list ->
-                if (list.isNotEmpty()) {
-                    with(list[0]) {
-                        if (totalItem >= 3)
-                            totalItem.toDouble()
-                        else
-                            0.0
-                    }
-                } else 0.0
-            }
-
-            voucherDiscount + tshirtDiscount
-        } else
-            0.0
     }
 
     fun clearCart(): Result<Boolean, Error> {
