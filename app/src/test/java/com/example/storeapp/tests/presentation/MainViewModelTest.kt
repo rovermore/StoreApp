@@ -12,13 +12,14 @@ import com.example.storeapp.presentation.base.ErrorUIMapper
 import com.example.storeapp.presentation.main.MainViewModel
 import com.example.storeapp.presentation.main.model.CartUIModelMapper
 import com.example.storeapp.presentation.main.model.ProductUIModelMapper
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 
-
+@ExperimentalCoroutinesApi
 class MainViewModelTest {
 
     private lateinit var productUseCase: ProductUseCase
@@ -51,25 +52,32 @@ class MainViewModelTest {
         cartUIModelMapper = Mockito.mock(CartUIModelMapper::class.java)
     }
 
+
     @Test
-    fun `when viewModel init then productUseCase getProductsCatalog is called`() = runTest {
+    fun `when viewModel init then productUseCase getProductsCatalog is called`() {
         Mockito.`when`(productUseCase.getProductsCatalog()).thenReturn(successList)
         Mockito.`when`(cartUseCase.getCart()).thenReturn(successCart)
         Mockito.`when`(cartUIModelMapper.map(cartDTO)).thenReturn(cartUIModel)
-        viewModel = MainViewModel(
-            productUseCase, errorUIMapper, productUIModelMapper, cartUseCase, cartUIModelMapper
-        )
+        runTest {
+            viewModel = MainViewModel(
+                productUseCase, errorUIMapper, productUIModelMapper, cartUseCase, cartUIModelMapper
+            )
+        }
+
         Mockito.verify(productUseCase).getProductsCatalog()
     }
 
     @Test
-    fun `when viewModel init then cartUseCase getCart is called`() = runTest {
+    fun `when viewModel init then cartUseCase getCart is called`() {
         Mockito.`when`(productUseCase.getProductsCatalog()).thenReturn(successList)
         Mockito.`when`(cartUseCase.getCart()).thenReturn(successCart)
         Mockito.`when`(cartUIModelMapper.map(cartDTO)).thenReturn(cartUIModel)
-        viewModel = MainViewModel(
-            productUseCase, errorUIMapper, productUIModelMapper, cartUseCase, cartUIModelMapper
-        )
+        runTest {
+            viewModel = MainViewModel(
+                productUseCase, errorUIMapper, productUIModelMapper, cartUseCase, cartUIModelMapper
+            )
+        }
+
         Mockito.verify(cartUseCase).getCart()
     }
 
