@@ -137,8 +137,8 @@ private fun CartPreview() {
         isCartLoading = false,
         cart = CartUIModel(
             items = listOf(
-                CartItemUIModel(ProductUIModel("MUG", "Cabify Cofee Mug", "7.5"),  "25", "5"),
-                CartItemUIModel(ProductUIModel("MUG", "Cabify Cofee Mug", "7.5"),  "25", "5"),
+                CartItemUIModel(ProductUIModel("MUG", "Cofee Mug", "7.5"),  "25", "5"),
+                CartItemUIModel(ProductUIModel("MUG", "Cofee Mug", "7.5"),  "25", "5"),
             ),
             totalBeforeDiscount = "230",
             discount = "30",

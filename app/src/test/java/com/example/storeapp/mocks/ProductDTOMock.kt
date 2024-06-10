@@ -6,42 +6,42 @@ object ProductDTOMock {
 
     private val productDTO11 = ProductDTO(
         code = "VOUCHER",
-        name = "Cabify Voucher",
+        name = "Voucher",
         price = 5.00
     )
     private val productDTO12 = ProductDTO(
         code = "VOUCHER",
-        name = "Cabify Voucher",
+        name = "Voucher",
         price = 5.00
     )
     private val productDTO13 = ProductDTO(
         code = "VOUCHER",
-        name = "Cabify Voucher",
+        name = "Voucher",
         price = 5.00
     )
     private val productDTO21 = ProductDTO(
         code = "TSHIRT",
-        name = "Cabify T-Shirt",
+        name = "T-Shirt",
         price = 20.00
     )
     private val productDTO22 = ProductDTO(
         code = "TSHIRT",
-        name = "Cabify T-Shirt",
+        name = "T-Shirt",
         price = 20.00
     )
     private val productDTO23 = ProductDTO(
         code = "TSHIRT",
-        name = "Cabify T-Shirt",
+        name = "T-Shirt",
         price = 20.00
     )
     private val productDTO31 = ProductDTO(
         code = "MUG",
-        name = "Cabify Coffee Mug",
+        name = "Coffee Mug",
         price = 7.50
     )
     private val productDTO32 = ProductDTO(
         code = "MUG",
-        name = "Cabify Coffee Mug",
+        name = "Coffee Mug",
         price = 7.50
     )
 

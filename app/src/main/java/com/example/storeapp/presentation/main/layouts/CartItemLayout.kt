@@ -85,7 +85,7 @@ fun CartItem(
 @Composable
 private fun CartItemPreview() {
     CartItem(
-        item = CartItemUIModel(ProductUIModel("MUG", "Cabify Cofee Mug", "7.5"), totalAmount = "5", totalItem = "5"),
+        item = CartItemUIModel(ProductUIModel("MUG", "Cofee Mug", "7.5"), totalAmount = "5", totalItem = "5"),
         onAddClicked = {},
         onRemoveClicked = {}
     )

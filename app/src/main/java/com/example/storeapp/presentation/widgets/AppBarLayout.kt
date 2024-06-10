@@ -33,7 +33,7 @@ fun StoreAppBar(
         colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = Purple40),
         title = {
             Text(
-                text = "Cabify Store",
+                text = "Store",
                 fontWeight = FontWeight.Bold,
                 color = Color.White,
                 fontSize = 18.sp

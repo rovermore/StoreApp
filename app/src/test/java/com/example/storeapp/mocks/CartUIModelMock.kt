@@ -8,7 +8,7 @@ object CartUIModelMock {
     private val cartItem1 = CartItemUIModel(
         productUIModel = ProductUIModel(
             code = "VOUCHER",
-            name = "Cabify Voucher",
+            name = "Voucher",
             price = "5"
         ),
         totalAmount = "15",
@@ -17,7 +17,7 @@ object CartUIModelMock {
     private val cartItem2 = CartItemUIModel(
         productUIModel = ProductUIModel(
             code = "TSHIRT",
-            name = "Cabify T-Shirt",
+            name = "T-Shirt",
             price = "20"
         ),
         totalAmount = "60",
@@ -26,7 +26,7 @@ object CartUIModelMock {
     private val cartItem3 = CartItemUIModel(
         productUIModel = ProductUIModel(
             code = "MUG",
-            name = "Cabify Coffee Mug",
+            name = "Coffee Mug",
             price = "7.5"
         ),
         totalAmount = "15",

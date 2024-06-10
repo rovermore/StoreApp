@@ -9,7 +9,7 @@ object CartDTOMock {
     private val cartItemDTO1 = CartItemDTO(
         productDTO = ProductDTO(
             code = "VOUCHER",
-            name = "Cabify Voucher",
+            name = "Voucher",
             price = 5.00
         ),
         totalAmount = 15.0,
@@ -18,7 +18,7 @@ object CartDTOMock {
     private val cartItemDTO2 = CartItemDTO(
         productDTO = ProductDTO(
             code = "TSHIRT",
-            name = "Cabify T-Shirt",
+            name = "T-Shirt",
             price = 20.00
         ),
         totalAmount = 60.0,
@@ -27,7 +27,7 @@ object CartDTOMock {
     private val cartItemDTO3 = CartItemDTO(
         productDTO = ProductDTO(
             code = "MUG",
-            name = "Cabify Coffee Mug",
+            name = "Coffee Mug",
             price = 7.50
         ),
         totalAmount = 15.0,

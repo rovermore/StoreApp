@@ -138,14 +138,14 @@ fun Content(
 private fun MainActivityPreview() {
     Content(
         productsCatalog = listOf(
-            ProductUIModel("VOUCHER", "Cabify Voucher", "5"),
-            ProductUIModel("VOUCHER", "Cabify Voucher", "5"),
-            ProductUIModel("MUG", "Cabify Cofee Mug", "7.5"),
+            ProductUIModel("VOUCHER", "Voucher", "5"),
+            ProductUIModel("VOUCHER", "Voucher", "5"),
+            ProductUIModel("MUG", "Cofee Mug", "7.5"),
         ),
         cart = CartUIModel(
             items = listOf(
-                CartItemUIModel(ProductUIModel("VOUCHER", "Cabify Voucher", "5"), "25", "5"),
-                CartItemUIModel(ProductUIModel("VOUCHER", "Cabify Voucher", "5"), "25", "5"),
+                CartItemUIModel(ProductUIModel("VOUCHER", "Voucher", "5"), "25", "5"),
+                CartItemUIModel(ProductUIModel("VOUCHER", "Voucher", "5"), "25", "5"),
             ),
             discount = "30",
             totalAmount = "200",
@@ -167,8 +167,8 @@ private fun MainActivityWithLoaderPreview() {
         productsCatalog = listOf(),
         cart = CartUIModel(
             items = listOf(
-                CartItemUIModel(ProductUIModel("MUG", "Cabify Cofee Mug", "7.5"), "25", "5"),
-                CartItemUIModel(ProductUIModel("MUG", "Cabify Cofee Mug", "7.5"), "25", "5"),
+                CartItemUIModel(ProductUIModel("MUG", "Cofee Mug", "7.5"), "25", "5"),
+                CartItemUIModel(ProductUIModel("MUG", "Cofee Mug", "7.5"), "25", "5"),
             ),
             discount = "30",
             totalAmount = "200",
@@ -188,14 +188,14 @@ private fun MainActivityWithLoaderPreview() {
 private fun MainActivityWithErrorPreview() {
     Content(
         productsCatalog = listOf(
-            ProductUIModel("VOUCHER", "Cabify Voucher", "5"),
-            ProductUIModel("TSHIRT", "Cabify T-Shirt", "20"),
-            ProductUIModel("MUG", "Cabify Cofee Mug", "7.5"),
+            ProductUIModel("VOUCHER", "Voucher", "5"),
+            ProductUIModel("TSHIRT", "T-Shirt", "20"),
+            ProductUIModel("MUG", "Cofee Mug", "7.5"),
         ),
         cart = CartUIModel(
             items = listOf(
-                CartItemUIModel(ProductUIModel("TSHIRT", "Cabify T-Shirt", "20"), "25", "5"),
-                CartItemUIModel(ProductUIModel("MUG", "Cabify Cofee Mug", "7.5"), "25", "5"),
+                CartItemUIModel(ProductUIModel("TSHIRT", "T-Shirt", "20"), "25", "5"),
+                CartItemUIModel(ProductUIModel("MUG", "Cofee Mug", "7.5"), "25", "5"),
             ),
             discount = "30",
             totalAmount = "200",

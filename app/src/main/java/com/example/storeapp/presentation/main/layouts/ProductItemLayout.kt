@@ -60,7 +60,7 @@ fun ProductItem(
 @Composable
 private fun ProductItemPreview() {
     ProductItem(
-        product = ProductUIModel(code = "VOUCHER", name = "Cabify Voucher", price = "5"),
+        product = ProductUIModel(code = "VOUCHER", name = "Voucher", price = "5"),
         onAddClicked = {}
     )
 }
