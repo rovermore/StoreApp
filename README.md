@@ -1,4 +1,6 @@
 # StoreApp
+![Captura de Pantalla 2024-06-10 a las 18 05 47](https://github.com/rovermore/StoreApp/assets/33871567/d6e2bb8d-9e3a-48a5-98e4-67e4766fa8c4)
+![Captura de Pantalla 2024-06-10 a las 18 05 55](https://github.com/rovermore/StoreApp/assets/33871567/c6e8ee93-7fed-4110-807a-907c3ba4e602)
 
 ## Summary
 The app shows a small catalog of products fetched from network in a list that will show product name and price. 
