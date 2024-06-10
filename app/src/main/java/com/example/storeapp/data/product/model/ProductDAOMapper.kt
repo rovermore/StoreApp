@@ -11,7 +11,7 @@ class ProductDAOMapper @Inject constructor() {
         with(productDAO) {
             return ProductDTO(
                 code = code ?: "",
-                name = name ?: "",
+                name = code ?: "",
                 price = price ?: 0.0
             )
         }
