@@ -11,6 +11,7 @@ import androidx.compose.material.ModalBottomSheetValue
 import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -40,16 +41,21 @@ fun MainActivityLayout(
     val isCartLoading by viewModel.isCartLoading.collectAsStateWithLifecycle()
     val error by viewModel.error.collectAsStateWithLifecycle()
 
+    val getCart = remember { { viewModel.getCart() } }
+    val clearCart = remember { { viewModel.clearCart() } }
+    val addProduct = remember { { product: ProductUIModel -> viewModel.addProduct(product) } }
+    val deleteProduct = remember { { product: ProductUIModel -> viewModel.deleteProduct(product) } }
+
     Content(
         productsCatalog = productsCatalog,
         cart = cart,
         isLoading = isLoading,
         isCartLoading = isCartLoading,
         error = error,
-        onCartClicked = { viewModel.getCart() },
-        onAddProduct = { viewModel.addProduct(it) },
-        onRemoveProduct = { viewModel.deleteProduct(it) },
-        onBuyClicked = { viewModel.clearCart() }
+        onCartClicked = { getCart() },
+        onAddProduct = { addProduct(it) },
+        onRemoveProduct = { deleteProduct(it) },
+        onBuyClicked = { clearCart() }
     )
 
 }
@@ -111,7 +117,7 @@ fun Content(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 if (error is ErrorUI.None) {
-                    items(productsCatalog) {
+                    items(productsCatalog, key = { it.code }) {
                         ProductItem(
                             product = it,
                             onAddClicked = { onAddProduct(it) }

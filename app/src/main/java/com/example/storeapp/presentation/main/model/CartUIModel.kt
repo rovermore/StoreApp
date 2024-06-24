@@ -1,5 +1,8 @@
 package com.example.storeapp.presentation.main.model
 
+import androidx.compose.runtime.Stable
+
+@Stable
 data class CartUIModel(
     val items: List<CartItemUIModel> = emptyList(),
     val totalBeforeDiscount: String = "",
