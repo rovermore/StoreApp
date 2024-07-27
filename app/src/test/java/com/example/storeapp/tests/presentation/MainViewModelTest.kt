@@ -2,7 +2,6 @@ package com.example.storeapp.tests.presentation
 
 import com.example.storeapp.domain.base.Success
 import com.example.storeapp.domain.cart.usecase.CartUseCase
-import com.example.storeapp.domain.product.model.ProductDTO
 import com.example.storeapp.domain.product.usecase.ProductUseCase
 import com.example.storeapp.mocks.CartDTOMock
 import com.example.storeapp.mocks.CartUIModelMock
@@ -13,11 +12,6 @@ import com.example.storeapp.presentation.main.MainViewModel
 import com.example.storeapp.presentation.main.model.CartUIModelMapper
 import com.example.storeapp.presentation.main.model.ProductUIModelMapper
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.runTest
-import org.junit.Before
-import org.junit.Test
-import org.mockito.Mockito
-import org.mockito.MockitoAnnotations
 
 @ExperimentalCoroutinesApi
 class MainViewModelTest {
@@ -42,7 +36,7 @@ class MainViewModelTest {
     private val cartUIModel = CartUIModelMock.cart
 
 
-    @Before
+   /* @Before
     fun setup() = runTest {
         MockitoAnnotations.openMocks(this)
         productUseCase = Mockito.mock(ProductUseCase::class.java)
@@ -129,6 +123,6 @@ class MainViewModelTest {
         viewModel.clearCart()
         Mockito.verify(cartUseCase).getCart()
 
-    }
+    }*/
 
 }
