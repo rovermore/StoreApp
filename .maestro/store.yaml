@@ -1,0 +1,15 @@
+appId: com.example.storeapp
+---
+- launchApp
+- tapOn:
+    text: "Add"
+    index: 0
+- tapOn:
+    text: "Add"
+    index: 1
+- tapOn:
+    text: "Add"
+    index: 2
+- tapOn:
+    id: "cartButton"
+- tapOn: "Buy"

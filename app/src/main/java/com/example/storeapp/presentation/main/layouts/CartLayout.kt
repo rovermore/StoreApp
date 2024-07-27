@@ -16,10 +16,14 @@ import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.testTagsAsResourceId
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -31,6 +35,7 @@ import com.example.storeapp.presentation.main.model.CartUIModel
 import com.example.storeapp.presentation.main.model.ProductUIModel
 import com.example.storeapp.presentation.widgets.Loader
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun Cart(
     isCartLoading: Boolean,
@@ -91,7 +96,8 @@ fun Cart(
 
             item {
                 Button(
-                    modifier = Modifier.fillMaxWidth().padding(8.dp),
+                    modifier = Modifier.fillMaxWidth().padding(8.dp)
+                        .semantics { testTagsAsResourceId = true }.testTag("Buy"),
                     onClick = { onBuyClicked() }
                 ) {
                     Text(text = stringResource(id = R.string.buy))
